@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+}
+
+
+
+
+
+.App-title {
+  font-size: 1.5em;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin-bottom: 40px;
+}
+tr {
+}
+td, th {
+  border: 1px solid black;
+  min-height: 20px;
+
+}

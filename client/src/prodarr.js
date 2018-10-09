@@ -1,0 +1,18 @@
+export default [
+    {id:'1', art_id:'1', name:'artbag', description:'lovely artbag', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/bag.jpg'},
+    {id:'2', art_id:'2', name:'artmouse', description:'lovely artmouse', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537868330/products/mousepad2.jpg'},
+    {id:'3', art_id:'3', name:'artmug', description:'lovely artmug', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/mugHi.jpg'},
+    {id:'4', art_id:'3', name:'arttshirt', description:'lovely arttshirt', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/tshirtHi.jpg'},
+    {id:'5', art_id:'3', name:'artoriginal', description:'lovely original', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537868093/products/suffrenFramed.jpg'},
+    {id:'5', art_id:'5', name:'artpillow', description:'lovely pillow', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/pillowLo.jpg'},
+    {id:'6', art_id:'4', name:'artpillow2', description:'lovely pillow2', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537868369/products/pillow.jpg'},
+    {id:'7', art_id:'14', name:'artmug', description:'lovely artmug', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/mug.jpg'},
+    {id:'8', art_id:'6', name:'artbag', description:'lovely artbag', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/bag.jpg'},
+    {id:'9', art_id:'7', name:'artmouse', description:'lovely artmouse', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537868330/products/mousepad2.jpg'},
+    {id:'10', art_id:'8', name:'artmug', description:'lovely artmug', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/mugHi.jpg'},
+    {id:'14', art_id:'9', name:'arttshirt', description:'lovely arttshirt', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/tshirtHi.jpg'},
+    {id:'51', art_id:'10', name:'artoriginal', description:'lovely original', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537868093/products/suffrenFramed.jpg'},
+    {id:'15', art_id:'11', name:'artpillow', description:'lovely pillow', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/pillowLo.jpg'},
+    {id:'16', art_id:'12', name:'artpillow2', description:'lovely pillow2', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537868369/products/pillow.jpg'},
+    {id:'17', art_id:'13', name:'artmug', description:'lovely artmug', width:4, height:2, depth:1, weight:1, price:20, category:'', imageURL:'https://res.cloudinary.com/czingc/image/upload/v1537865184/products/mug.jpg'}
+];
