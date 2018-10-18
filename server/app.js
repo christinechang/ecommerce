@@ -32,7 +32,7 @@ app.use('/products', productRoute)       //'/products'  is base for browser addr
 app.use('/admin', adminRoute)       //'/admin'  is base for browser address/path/route
 app.use('/artworks', artworkRoute)       //'/artwork'  is base for browser address/path/route
 app.use('/images', imageRoute)       //'/images  is base for browser address/path/route
-app.use('/payment', paymentRoute)       
+app.use('/payment', paymentRoute)       //'/images  is base for browser address/path/route
 
                                 //only one word only!
 //app.js imports routes which imports controller.

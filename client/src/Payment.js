@@ -16,7 +16,7 @@ const PAYMENT_SERVER_URL = '/payment';
 
 const CURRENCY = 'EUR';
 
-const fromEuroToCent = amount => amount * 100;
+const fromEuroToCent = amount => amount * 10;
 
 const successPayment = data => {
     debugger
@@ -36,27 +36,24 @@ axios.post('http://localhost:3010/payment',
 	description,
 	source: token.id,
 	currency: CURRENCY,
-	amount: fromEuroToCent(amount)
+    amount: fromEuroToCent(amount)
 })
 .then(successPayment)
 .catch(errorPayment);
 
 
-const Payment = ({ name, description, amount, label }) => {
-    let name1 = 'christine';
-    let description1 = 'artwork',
-        amount1 = 100,
-        label1 = "Pay Now"
-
+const Payment = ({name, description, amount }) => {
     return(
-    <StripeCheckout
-        name={name1}
-        description={description1}
-        amount={fromEuroToCent(amount1)}
-        token={onToken(amount1, description1)}
-        currency={CURRENCY}
-        stripeKey={STRIPE_PUBLISHABLE}
-        label = {label1}
-    />)
+        <StripeCheckout
+            name={name}
+            description={description}
+            amount={fromEuroToCent(amount)}
+            token={onToken(amount, description)}
+            currency={CURRENCY}
+            stripeKey={STRIPE_PUBLISHABLE}
+            label = 'Pay Now'
+        />
+
+        )
 }
 export default Payment;

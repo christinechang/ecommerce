@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Payment  from './Payment'
 
 
 export default class Cart extends Component {
@@ -51,7 +52,6 @@ export default class Cart extends Component {
                 </div> 
                 {/* //ITEMS IN CART */}
                 {this.state.orderArr.map( (elem,i) => {
-                    console.log("one item info: ", this.state.oneItemInfo)
                     return (
                         <div style = {styles.layout_checkout} key = {i}> 
                             <div >
@@ -72,9 +72,13 @@ export default class Cart extends Component {
                             </div>
                         </div>)
                 })}
- 
+                <div><h3>TOTAL: $$$$$</h3></div>
                 <div style = {styles.rightInDiv}>
-                    <button style = {styles.mainButton} onClick = {this.payNow}>Pay Now</button>
+                    <Payment 
+                        name = 'christine chang' 
+                        description = 'order 1234'
+                        amount = {10} 
+                        />
                 </div>
             </div>    
         );
