@@ -41,6 +41,8 @@ export default class Artwork extends Component {
         //add item to orderList
         let itemInfo = {_id: this.state.artInfo._id, size: this.state.size, quantity: this.state.quantity,
         name: this.state.artInfo.name,price: this.state.artInfo.price, imgurl:this.state.artInfo.imgurl , alt:this.state.artInfo.alt}
+        
+        itemInfo.price = 300;  //TEMP: until we get the product collection with prices, we just set price to $300.
         let orderList = localStorage.getItem('orderList') || '';
         let orderArr = (orderList ? JSON.parse(orderList) : []);
         orderArr.push(itemInfo);
@@ -68,7 +70,7 @@ export default class Artwork extends Component {
                     <NavLink to="/what">
                         <div style = {styles.closeMe} ><FontAwesomeIcon icon="times-circle" /></div>
                     </NavLink>
-                <div style = {styles.imgContainer} >
+                    <div style = {styles.imgContainer} >
                         <img style = {styles.artImg} src = {artInfo.imgurl} alt={artInfo.name}/>
                     </div>
                 </div>
@@ -144,8 +146,8 @@ let styles = {
         width: "100%",
     },
     artImg: {
-        width: "100%",
-        maxWidth: "600px",
+        // width: "100%",
+        maxHeight: "75vh",
     },
     closeMe: {
         float: "right",

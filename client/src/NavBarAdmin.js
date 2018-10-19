@@ -7,8 +7,8 @@ export default class NavBarAdmin extends React.Component{
            fontSize: 'larger'
         }
         return(
-            <div style={styles.navbarAdmin}>
-                <div></div>
+            // <div style={styles.navbarAdmin}>
+            //     <div></div>
                 <ul style={styles.adminUl}>
  
                     <NavLink to="/admin/artworks" activeStyle ={activeStyle} style = {styles.adminLink}>
@@ -36,7 +36,7 @@ export default class NavBarAdmin extends React.Component{
                         <li style = {styles.adminLi}>Logout </li>
                     </NavLink>
                 </ul>
-            </div>
+            // </div>
         )}}
 
 const styles = {

@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Payment  from './Payment'
-
+// import Payment  from './Payment'
+import Cart1Item  from './Cart1Item'
+import { NavLink } from 'react-router-dom'
 
 export default class Cart extends Component {
     state = {
         orderArr:[],
     }
 
-/////////
     updateCart = () => {
 
     }
@@ -24,7 +23,7 @@ export default class Cart extends Component {
     }
     updateOrderList = () => {
         let cb = () => {console.log(`orderArr: ${this.state.orderArr}`)}
-
+        // debugger
         //get order info from localStorage
         let orderList = JSON.stringify(this.state.orderArr);
         localStorage.setItem('orderList',orderList);
@@ -34,9 +33,10 @@ export default class Cart extends Component {
         this.updateOrderList();
     }
     deleteItem = (position) => {
-        let orderArr = this.state.orderArr.splice(position,1);  
-        this.setState({orderArr: orderArr})   //delete 1 item
-        this.updateOrderList();
+        let cb = () => {this.updateOrderList()} 
+        let orderArr = this.state.orderArr.slice();     //copy from state
+        orderArr.splice(position,1);                    // remove this item
+        this.setState({orderArr: orderArr}, cb );       //reset the state
     }
     componentDidMount() {
         this.getOrderList();
@@ -45,6 +45,13 @@ export default class Cart extends Component {
         console.log("pay now");
     }
     render= () => {
+        let subTotal = 0;
+        let salesTaxRate = .0825;
+        this.state.orderArr.map( (elem) => {
+            subTotal += elem.price
+        });
+        let tax = salesTaxRate * subTotal;
+        let shipping = .1 * subTotal;
         return (
             <div  style = {styles.boxBorder}>
                 <div  style = {styles.pageTitle}>
@@ -52,33 +59,40 @@ export default class Cart extends Component {
                 </div> 
                 {/* //ITEMS IN CART */}
                 {this.state.orderArr.map( (elem,i) => {
+                    // debugger
                     return (
-                        <div style = {styles.layout_checkout} key = {i}> 
-                            <div >
-                                <p> {i})</p>
-                                <p>{elem._id}</p> 
-                                <div> <FontAwesomeIcon icon="trash-alt" /> </div> 
-                            </div>
-                            <div style = {styles.imgContainer}>
-                                <img  style = {styles.artImg} src = {elem.imgurl} width = "300px" />
-                            </div>
-                            <div>
-                                <p> {elem.name} </p>
-                                <p>quantity{elem.quantity} @ $45{elem.price}</p>
-                                <p> size: {elem.size} </p>
-                            </div>
-                            <div  style = {styles.leftBorder}>
-                            <h3>$$$</h3>
-                            </div>
-                        </div>)
+                        <Cart1Item item = {elem} idx = {i} deleteItem = {this.deleteItem}/>
+                    )
                 })}
-                <div><h3>TOTAL: $$$$$</h3></div>
-                <div style = {styles.rightInDiv}>
-                    <Payment 
-                        name = 'christine chang' 
-                        description = 'order 1234'
-                        amount = {10} 
-                        />
+                <div style = {styles.total_line}>
+                    <div></div>
+                    <h4 style = {styles.total}>Subtotal: </h4>
+                    <h4 style = {styles.total}>${subTotal} </h4>
+
+                    <div></div>
+                    <h4 style = {styles.total}>Tax: </h4>
+                    <h4 style = {styles.total}>${tax} </h4>
+
+                    <div></div>
+                    <h4 style = {styles.total}>Shipping: </h4>
+                    <h4 style = {styles.total}>${shipping} </h4>
+
+                    <div></div>
+                    <h3 style = {styles.total}>Total: </h3>
+                    <h3 style = {styles.total}>${subTotal + tax + shipping} </h3>
+                </div>                   
+                    {/* <div  style = {styles.total}>
+                        <h4>Tax: </h4>
+                        <h4>Shipping: </h4>
+                        <h3>TOTAL: </h3>
+                    </div>
+                    <div  style = {styles.total}>
+                        <h4>${tax}</h4>
+                        <h4>${shipping}</h4>
+                        <h3>${subTotal + tax + shipping}</h3>
+                    </div> */}
+                <div style = {styles.checkoutContainer}>
+                    <NavLink to={'/checkout'} style={styles.navlink}><div style = {styles.fakebutton}><p style = {styles.par}>Proceed to Checkout</p></div></NavLink>
                 </div>
             </div>    
         );
@@ -86,7 +100,6 @@ export default class Cart extends Component {
 }
 let styles = {
     boxBorder:{
-        border: "1px grey solid",
         margin: "10px"
     },
     leftBorder:{
@@ -95,23 +108,20 @@ let styles = {
     pageTitle: {
         marginLeft: "10px"
     },
-    layout_checkout: {
+    total_line: {
         display:"grid",
-        gridTemplateColumns: "1fr 4fr 4fr 2fr",
+        gridTemplateColumns: "14fr 1fr 2fr",    //based on cart format
         gridGap: "0",
-        backgroundColor: "pink",
+        backgroundColor: "white",
         width: "95%",
         alignSelf: 'center',
         justifySelf: 'center',
         border: "1px grey solid",
-        margin: "10px"
-    }  ,
-    imgContainer: {
-        width: "300px",
+        margin: "0 10px"
     },
-    artImg: {
-        width: "100%",
-        maxWidth: "300px",
+    total:{
+        paddingLeft: 10,
+        margin: 5
     },
     mainButton: {
         border: "1px solid black",
@@ -120,12 +130,31 @@ let styles = {
         padding: '0 20px',
         width: "200px"
     },
-    rightInDiv: {
-        width: "100%",
+    checkoutContainer: {
         display: "flex",
-        // marginLeft: "3%",
-        // textAlign: "center",
-        justifyContent: "flex-end"
-
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+        width: "95%",
+        margin: "10px"
     },
+    fakebutton: {
+        border: "1px solid black",
+        margin:"15px auto",
+        padding: '20px',
+        backgroundColor: "lightgrey",
+        fontSize: "20px",
+        display: "flex",
+        alignItems: "center"
+    },
+    navlink: {
+        textDecoration: "none",
+        margin:0,
+        color: "black",
+        display: "flex",
+        alignItems: "center"
+    },
+    par: {
+        textAlign: "center",
+        margin: "0"
+    }
 }

@@ -3,7 +3,7 @@ import Who from './Who'
 import WhenWhere from './WhenWhere'
 import Why from './Why'
 import NavBarComp from './NavBarComp'
-import NavBarAdmin from './NavBarAdmin'
+// import NavBarAdmin from './NavBarAdmin'
 import AdminArtGrid from './AdminArtGrid'
 import AdminArtInput from './AdminArtInput'
 import AdminArtUpdate from './AdminArtUpdate'
@@ -13,6 +13,7 @@ import UserLogout from './UserLogout'
 import UserRegister from './UserRegister'
 import Artwork from './Artwork'
 import Cart from './Cart'
+import Checkout from './Checkout'
 import Payment from './Payment'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -45,7 +46,7 @@ export default class App extends Component {
       <Router>
         <div>
         <NavBarComp/>
-        <NavBarAdmin/>
+        {/* <NavBarAdmin/> */}
           <Route exact path = "/" component = {What}/>
           <Route path = '/who' component = {Who}/>
           {/* <Route exact path = '/what/:id' component = {ProductGrid}/> */}
@@ -61,6 +62,7 @@ export default class App extends Component {
           <Route exact path  = '/admin/register' component = {UserRegister}/>
           <Route exact path = '/artwork/:_id' component = {Artwork}/>
           <Route exact path = '/cart' component = {Cart}/>
+          <Route exact path = '/checkout' component = {Checkout}/>
           <Route exact path = '/payment' component = {Payment}/>
         </div>
       </Router>

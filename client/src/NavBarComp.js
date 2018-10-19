@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import NavBarAdmin from './NavBarAdmin'
+
 export default class NavBarComp extends React.Component{
     render(){
         let activeStyle = {
@@ -9,7 +11,9 @@ export default class NavBarComp extends React.Component{
         return(
             <div style = {styles.navbar}>
                 <div style = {styles.logo}>
-                <h1 style = {styles.h1}>c zing c</h1></div>
+                    <h1 style = {styles.h1}>c zing c</h1>
+                </div>
+                <NavBarAdmin/>
                 <ul style={styles.ul}>
                     <li style = {styles.li}>
                         <NavLink to="/who" 
@@ -35,6 +39,12 @@ export default class NavBarComp extends React.Component{
                         Why
                         </NavLink>
                     </li>
+                    <li style = {styles.li}>
+                        <NavLink to="/cart"
+                            activeStyle ={activeStyle} style = {styles.link}>
+                        Cart
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
         )}}
@@ -57,7 +67,7 @@ const styles = {
     navbar: {
         display: 'grid',
         backgroundColor: '#1a587a',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: '1fr 2fr 2fr',
         alignItems: 'center',
         paddingLeft: '15px',
         position: 'sticky',

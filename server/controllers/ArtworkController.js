@@ -17,7 +17,7 @@ class ArtworkController {
     }
     async _findOne(req,res) { //(finds one and returns one)
         let {_id} =  req.params;
-        console.log ('(artwork controller)findOne artwork:', _id, req.params );
+        // console.log ('(artwork controller)findOne artwork:', _id, req.params );
         try {
             const artInfo = await Artwork.findOne({_id:_id})//model fetch data from mongo
                                         //find uses filter in {} is filter

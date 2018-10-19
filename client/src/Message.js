@@ -14,9 +14,6 @@ export default class Message extends Component {
     }
     render = () => {
         const {msg1, button1Msg, button1Url, button2Msg, button2Url} = this.props
-        let button1Html = ((button1Msg) ? 
-            `<NavLink to={${button1Url}} style={styles.navlink}><div style = {styles.fakebutton}><p style = {styles.par}>Continue Shopping</p></div></NavLink>`
-            : '')
 
         return (
             (this.state.visible ?
@@ -58,7 +55,6 @@ let styles = {
         color: "#f9f0c7",
         textAlign: "center",
     },
-
     message: {
         alignSelf: 'center',
         justifySelf: 'center',

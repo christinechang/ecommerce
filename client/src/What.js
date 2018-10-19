@@ -1,7 +1,5 @@
-// import artarr from './artarr';
-import GalleryCol from './GalleryCol';
-
 import React, { Component } from 'react';
+import GalleryCol from './GalleryCol';
 
 export default class What extends Component {
  
