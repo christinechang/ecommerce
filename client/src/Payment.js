@@ -51,7 +51,7 @@ const Payment = ({name, description, amount }) => {
             token={onToken(amount, description)}
             currency={CURRENCY}
             stripeKey={STRIPE_PUBLISHABLE}
-            label = 'Pay Now'
+            label = 'Proceed to Payment'
         />
 
         )

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 export default class Cart extends Component {
     state = {
-        orderArr:[],
+        orderItems:[]  
     }
 
     updateCart = () => {
@@ -14,18 +14,18 @@ export default class Cart extends Component {
 
     getOrderList = () => {
         let cb = () => {
-            console.log(`orderArr: ${this.state.orderArr}`)
+            console.log(`orderItems: ${this.state.orderItems}`)
         }
         //get order info from localStorate
         let orderList = localStorage.getItem('orderList') || '';
-        let orderArr = orderList ? JSON.parse(orderList) : [];
-        this.setState({orderArr: orderArr }, cb)
+        let orderItems = orderList ? JSON.parse(orderList) : [];
+        this.setState({orderItems: orderItems }, cb)
     }
     updateOrderList = () => {
-        let cb = () => {console.log(`orderArr: ${this.state.orderArr}`)}
+        let cb = () => {console.log(`orderItems: ${this.state.orderItems}`)}
         // debugger
         //get order info from localStorage
-        let orderList = JSON.stringify(this.state.orderArr);
+        let orderList = JSON.stringify(this.state.orderItems);
         localStorage.setItem('orderList',orderList);
     }
     changeQuantity = () => {
@@ -34,31 +34,32 @@ export default class Cart extends Component {
     }
     deleteItem = (position) => {
         let cb = () => {this.updateOrderList()} 
-        let orderArr = this.state.orderArr.slice();     //copy from state
-        orderArr.splice(position,1);                    // remove this item
-        this.setState({orderArr: orderArr}, cb );       //reset the state
+        let orderItems = this.state.orderItems.slice();     //copy from state
+        orderItems.splice(position,1);                    // remove this item
+        this.setState({orderItems: orderItems}, cb );       //reset the state
     }
     componentDidMount() {
         this.getOrderList();
     }
-    payNow() {
-        console.log("pay now");
-    }
+
     render= () => {
         let subTotal = 0;
-        let salesTaxRate = .0825;
-        this.state.orderArr.map( (elem) => {
+        // let totalAmount = 0;
+        // let salesTaxRate = .0825;
+        this.state.orderItems.map( (elem) => {
             subTotal += elem.price
         });
-        let tax = salesTaxRate * subTotal;
-        let shipping = .1 * subTotal;
+        // let tax = salesTaxRate * subTotal;
+        // let shipping = .1 * subTotal;
+        let visibility = (subTotal > 0) ? styles.visible : styles.invisible;
+       
         return (
             <div  style = {styles.boxBorder}>
                 <div  style = {styles.pageTitle}>
                     <h2>Shopping Cart:</h2>
                 </div> 
                 {/* //ITEMS IN CART */}
-                {this.state.orderArr.map( (elem,i) => {
+                {this.state.orderItems.map( (elem,i) => {
                     // debugger
                     return (
                         <Cart1Item item = {elem} idx = {i} deleteItem = {this.deleteItem}/>
@@ -68,31 +69,11 @@ export default class Cart extends Component {
                     <div></div>
                     <h4 style = {styles.total}>Subtotal: </h4>
                     <h4 style = {styles.total}>${subTotal} </h4>
-
-                    <div></div>
-                    <h4 style = {styles.total}>Tax: </h4>
-                    <h4 style = {styles.total}>${tax} </h4>
-
-                    <div></div>
-                    <h4 style = {styles.total}>Shipping: </h4>
-                    <h4 style = {styles.total}>${shipping} </h4>
-
-                    <div></div>
-                    <h3 style = {styles.total}>Total: </h3>
-                    <h3 style = {styles.total}>${subTotal + tax + shipping} </h3>
+                   
                 </div>                   
-                    {/* <div  style = {styles.total}>
-                        <h4>Tax: </h4>
-                        <h4>Shipping: </h4>
-                        <h3>TOTAL: </h3>
-                    </div>
-                    <div  style = {styles.total}>
-                        <h4>${tax}</h4>
-                        <h4>${shipping}</h4>
-                        <h3>${subTotal + tax + shipping}</h3>
-                    </div> */}
-                <div style = {styles.checkoutContainer}>
-                    <NavLink to={'/checkout'} style={styles.navlink}><div style = {styles.fakebutton}><p style = {styles.par}>Proceed to Checkout</p></div></NavLink>
+                   
+                <div style = {Object.assign({},styles.checkoutContainer,visibility)}>
+                    <NavLink to={'/checkout'} style={styles.navlink} subTotal = {subTotal}><div style = {styles.fakebutton}><p style = {styles.par}>Proceed to Checkout</p></div></NavLink>
                 </div>
             </div>    
         );
@@ -100,7 +81,8 @@ export default class Cart extends Component {
 }
 let styles = {
     boxBorder:{
-        margin: "10px"
+        margin: "10px",
+        marginBottom: "40px"
     },
     leftBorder:{
         borderLeft: "1px grey solid",
@@ -156,5 +138,11 @@ let styles = {
     par: {
         textAlign: "center",
         margin: "0"
+    },
+    visible: {
+        display: "flex"
+    },
+    invisible: {
+        display: "none"
     }
 }
