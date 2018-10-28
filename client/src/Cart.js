@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-// import Payment  from './Payment'
 import Cart1Item  from './Cart1Item'
-import { NavLink } from 'react-router-dom'
+import NavButton from './NavButton';
 
 export default class Cart extends Component {
     state = {
@@ -22,7 +21,7 @@ export default class Cart extends Component {
         this.setState({orderItems: orderItems }, cb)
     }
     updateOrderList = () => {
-        let cb = () => {console.log(`orderItems: ${this.state.orderItems}`)}
+        // let cb = () => {console.log(`orderItems: ${this.state.orderItems}`)}
         // debugger
         //get order info from localStorage
         let orderList = JSON.stringify(this.state.orderItems);
@@ -49,8 +48,7 @@ export default class Cart extends Component {
         this.state.orderItems.map( (elem) => {
             subTotal += elem.price
         });
-        // let tax = salesTaxRate * subTotal;
-        // let shipping = .1 * subTotal;
+
         let visibility = (subTotal > 0) ? styles.visible : styles.invisible;
        
         return (
@@ -62,18 +60,17 @@ export default class Cart extends Component {
                 {this.state.orderItems.map( (elem,i) => {
                     // debugger
                     return (
-                        <Cart1Item item = {elem} idx = {i} deleteItem = {this.deleteItem}/>
+                        <Cart1Item key = {i} item = {elem} idx = {i} deleteItem = {this.deleteItem}/>
                     )
                 })}
                 <div style = {styles.total_line}>
                     <div></div>
                     <h4 style = {styles.total}>Subtotal: </h4>
                     <h4 style = {styles.total}>${subTotal} </h4>
-                   
                 </div>                   
                    
                 <div style = {Object.assign({},styles.checkoutContainer,visibility)}>
-                    <NavLink to={'/checkout'} style={styles.navlink} subTotal = {subTotal}><div style = {styles.fakebutton}><p style = {styles.par}>Proceed to Checkout</p></div></NavLink>
+                    <NavButton url = "/checkout" bText = "Proceed to Checkout"/>
                 </div>
             </div>    
         );
@@ -105,13 +102,6 @@ let styles = {
         paddingLeft: 10,
         margin: 5
     },
-    mainButton: {
-        border: "1px solid black",
-        margin:"15px auto",
-        height: '30px',
-        padding: '0 20px',
-        width: "200px"
-    },
     checkoutContainer: {
         display: "flex",
         justifyContent: "flex-end",
@@ -119,26 +109,7 @@ let styles = {
         width: "95%",
         margin: "10px"
     },
-    fakebutton: {
-        border: "1px solid black",
-        margin:"15px auto",
-        padding: '20px',
-        backgroundColor: "lightgrey",
-        fontSize: "20px",
-        display: "flex",
-        alignItems: "center"
-    },
-    navlink: {
-        textDecoration: "none",
-        margin:0,
-        color: "black",
-        display: "flex",
-        alignItems: "center"
-    },
-    par: {
-        textAlign: "center",
-        margin: "0"
-    },
+    
     visible: {
         display: "flex"
     },

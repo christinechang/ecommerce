@@ -6,7 +6,6 @@ class AdminController {
     //GET FIND ALL
     async _find(req,res) { //(finds many and returns array)
         console.log ('displaying all index' );
-
         try {
             const adminInfo = await Admin.find({})//model fetch data from mongo
                                         //find uses filter in {} is filter
@@ -38,7 +37,7 @@ class AdminController {
         try {
             let adminNew = {
                 username:username,
-                password: password
+                password:password
             }
             const adminInfo = await Admin.create(adminNew)//model fetch data from mongo
       
@@ -60,25 +59,34 @@ class AdminController {
             res.send({e})
         }
     }
+    //christine_chang,  fakepassword
     async _login(req,res) { //(finds one and returns one thing - not array)
         let {username,password} =  req.body;
-        console.log ('loggin in:', username, password, req.body );
+        // console.log ('===>AdminController logging in:', username, 'password' );
         try {
             const user = await Admin.findOne({username:username})
             //check the password
-            user.comparePassword(password, (err,success)=> {
-                if (!err && success) {
-                    // generate token
-                    var token = jwt.sign(user.toJSON(), config.secret,{ expiresIn:100080 })
-
-                    return res.json({ success:true, token: token, username:username })
-                } else{
-                    return res.json({success:false, err})
-                }
-            })
+            if (user) {
+                user.comparePassword(password, (err,success)=> {
+                    // console.log (`===>AdminControllererr: ${err}; success: ${success}`) 
+                    if (!err && success) {
+                        // generate token
+                        // console.log("===>AdminController: SUCCESS")
+                        var token = jwt.sign(user.toJSON(), config.secret,{ expiresIn:100080 })
+                        return res.json({success:true, token: token, username:username })
+                    } else{
+                        //this works
+                        // console.log("===>AdminController: ERROR - password not correct. PUT ERROR MESSAGE ON CLIENT")
+                        return res.json({success:false, err})
+                    }
+                })
+            } else {
+                // console.log("===>AdminController: Error: no user. PUT ERROR MESSAGE ON CLIENT")
+            }
 
         }
         catch(e) {
+            // console.log("===>AdminController: ERROR caught: ", e)
             res.send({e})
         }
     }

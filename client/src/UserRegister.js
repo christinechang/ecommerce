@@ -1,5 +1,7 @@
 
 import React, { Component } from 'react';
+// import { NavLink } from 'react-router-dom'
+import NavButton from './NavButton';
 
 export default class UserRegister extends Component {
     state = {
@@ -13,7 +15,7 @@ export default class UserRegister extends Component {
     onClick = () => {
         console.log(this.state)
         //writes to database
-        const url = "http://localhost:3010/admin/register";
+        const url = "http://localhost:3010/admins/register";
         fetch(url,{
             method: 'POST',
             headers: {
@@ -48,15 +50,15 @@ export default class UserRegister extends Component {
                     <label style={styles.label}>Name</label>
                     <input type="text" name="username" style={styles.input}></input>
                     <label style={styles.label}>Password</label>
-                    <input type="text" name="password" style={styles.input}></input>
+                    <input type="password" name="password" style={styles.input}></input>
                     <label style={styles.label}>Confirm Password</label>
-                    <input type="text" name="confirmPassword" style={styles.input}></input>
+                    <input type="password" name="confirmPassword" style={styles.input}></input>
                 </div>
                 <div style = {styles.centerInDiv}>
                     <button style = {styles.mainButton}  onClick = {this.onClick}>Create Account</button>
                 </div>
                 <div style = {styles.rightInDiv}>
-                    <button style = {styles.otherActButton} onClick = {this.onClick}>Login to Existing Account</button>
+                    <NavButton url = "/admin/login" bText = "(or login into existing account)"/>
                 </div>
             </div>
         </div> 
@@ -86,25 +88,24 @@ let styles = {
         padding: "20px",
         fontSize: "20px"
     },
-    mainButton: {
-        border: "1px solid black",
-        padding: '10px',
-        margin: '10px auto',
-        width: "200px"
-    },
-    otherActButton: {
-        border: "1px solid black",
-        padding: '5px',
-        margin: '10px',
-        width: "150px"
-    },
     centerInDiv: {
         textAlign: "center"
     },
     rightInDiv: {
-        textAlign: "right"
+        display: "flex",
+        justifyContent: "flex-end"
     },
     pageTitle: {
         marginLeft: "10px"
+    },
+    mainButton: {
+        backgroundColor: "lightgrey",
+        border: "1px solid black",
+        height: '55px',
+        width: "30vw",
+        fontSize: "20px",
+        padding: '0',
+        margin: "0",
+        cursor: "pointer"
     }
 }

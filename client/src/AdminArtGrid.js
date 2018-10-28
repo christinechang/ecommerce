@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AdminArtItem from './AdminArtItem';
-import { NavLink } from 'react-router-dom'
+import NavButton from './NavButton';
 
 
 export default class AdminArtGrid extends Component {
@@ -100,23 +100,19 @@ render() {
                     <div style = {styles.item}>H</div>
                     <div style = {styles.item}> </div>
                 </div>      
-                    {artWorks.map((elem,i)=>(
-                        <div  key = {i}>
-                            <AdminArtItem 
-                                artwork = {elem} 
-                                styles =  {styles} 
-                                handleDelete = {this.handleDelete}
-                                handleEdit = {this.handleEdit} 
-                                history = {this.props.history}/>
-                        </div>
-                    ))}
+                {artWorks.map((elem,i)=>(
+                    <div  key = {i}>
+                        <AdminArtItem 
+                            artwork = {elem} 
+                            styles =  {styles} 
+                            handleDelete = {this.handleDelete}
+                            handleEdit = {this.handleEdit} 
+                            history = {this.props.history}/>
+                    </div>
+                ))}
             </div>   
-            <div style = {styles.fakebutton}>
-                <NavLink to={`/admin/artworks/add`} 
-                        style={styles.navlink} 
-                        history = {this.props.history}>
-                    <div><p style = {styles.par}>Add Artwork</p></div>
-                </NavLink>
+            <div style = {styles.navButContainer}>
+                <NavButton url = "/admin/artworks/add" bText = "Add Artwork" history = {this.props.history}/>
             </div>
         </div>
     );
@@ -148,30 +144,9 @@ let styles = {
     pageTitle: {
         marginLeft: "10px"
     },
-
-    fakebutton: {
-        border: "1px solid black",
-        margin:"0 20px 20px 70%",
-        height: '40px',
-        width: "200px%",
-        backgroundColor: "lightgrey",
-        fontSize: "18px",
+    navButContainer: {
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    navlink: {
-        textDecoration: "none",
-        margin:0,
-        color: "black",
-    },
-    par: {
-        margin: "0",
-        textAlign: "center"
-    },
-    innerBox: {
-        width: "100%",
-        height: "100%",
-        backgroundColor: "pink"
+        justifyContent: "flex-end"
     }
+
 }

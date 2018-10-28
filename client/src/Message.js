@@ -19,7 +19,7 @@ export default class Message extends Component {
             (this.state.visible ?
                 <div style = {styles.allOverlay}>
                     <div style = {styles.overlayMsgBox}> 
-                        <h2  style = {styles.message}>Item Successfully Added to Cart</h2>
+                        <h2  style = {styles.message}>{msg1}</h2>
                         <div style = {styles.overlayButtonBox}>
                             <NavLink to={button1Url} style={styles.navlink}><div style = {styles.fakebutton}><p style = {styles.par}>{button1Msg}</p></div></NavLink>
                             <NavLink to={button2Url} style={styles.navlink}><div style = {styles.fakebutton}><p style = {styles.par}>{button2Msg}</p></div></NavLink>

@@ -1,9 +1,15 @@
 import React, {Component} from 'react'
 
-export default ({onSpinner}) => {
-    return (
-        <select onChange = {(value) => {onSpinner(value)}}>
-            <option value="">Choose State</option>
+export default class CheckoutStateUS extends Component { 
+
+    getStateUS = this.props.getStateUS;
+    handleChange = (event) => {
+        this.getStateUS(event.target.value)
+    }
+
+    render = () => (
+        <select name = "us_state" required style={styles.input} onChange={this.handleChange} >
+            <option value='' >Choose State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -57,5 +63,10 @@ export default ({onSpinner}) => {
             <option value="WY">Wyoming</option>
         </select>
     )
-    
+}
+let styles = {
+    input: {
+        fontSize: 16,
+        height: 30
+    }
 }

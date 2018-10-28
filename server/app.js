@@ -27,12 +27,12 @@ mongoose.connect('mongodb://127.0.0.1/ecommerce',()=>{ //always use this ip addr
     console.log('connected to mongodb');
 })  //will create if doesn't exist
 
-//routes
+//routes        - names of collections in database
 app.use('/products', productRoute)       //'/products'  is base for browser address/path/route
-app.use('/admin', adminRoute)       //'/admin'  is base for browser address/path/route
+app.use('/admins', adminRoute)       //'/admins'  is base for browser address/path/route
 app.use('/artworks', artworkRoute)       //'/artwork'  is base for browser address/path/route
 app.use('/images', imageRoute)       //'/images  is base for browser address/path/route
-app.use('/payment', paymentRoute)       //'/images  is base for browser address/path/route
+app.use('/payments', paymentRoute)       //'/payments  is base for browser address/path/route
 
                                 //only one word only!
 //app.js imports routes which imports controller.

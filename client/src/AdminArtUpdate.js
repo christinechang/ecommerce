@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AdminArtEditForm from './AdminArtEditForm'
 
-
 export default class AdminArtUpdate extends Component {
     state = {
         name: '',
@@ -110,27 +109,16 @@ let styles = {
         alignItems: "center",
         marginBottom: "40px"
     },
-    fakebutton: {
-        backgroundColor: "lightgrey",
-        border: "1px solid black",
-        height: '40px',
-        width: "200px",
-        color: "black",
-        fontSize: "16px",
-
-        textDecoration: "none",
-        display: "flex",
-        justifyContent: "center"
-    },
-    par: {
-        alignSelf: "center",
-    },
     addArtButton: {
         backgroundColor: "lightgrey",
         border: "1px solid black",
-        height: '40px',
-        width: "200px",
-        fontSize: "16px",
-        // padding: '0 20px'
+        height: '55px',
+        width: "30vw",
+        fontSize: "20px",
+        padding: '0',
+        margin: "0",
+        cursor: "pointer"
+
     }
 }
+

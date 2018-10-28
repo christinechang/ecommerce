@@ -6,10 +6,13 @@ export default class NavBarAdmin extends React.Component{
            fontWeight: 'bolder',
            fontSize: 'larger'
         }
+        let visibility = Object.assign({},styles.adminUl,(localStorage.getItem('token') ? {} : styles.invisible))        //if logged in, show admin navbar
+        //check local storage whether user is logged in or not
+        //change label between 'login' and 'logout'
         return(
             // <div style={styles.navbarAdmin}>
             //     <div></div>
-                <ul style={styles.adminUl}>
+                <ul style={visibility}>
  
                     <NavLink to="/admin/artworks" activeStyle ={activeStyle} style = {styles.adminLink}>
                         <li style = {styles.adminLi}>admin ART</li>
@@ -32,9 +35,6 @@ export default class NavBarAdmin extends React.Component{
                         Logout
                         </NavLink> */}
 
-                    <NavLink to="/admin/logout" activeStyle ={activeStyle} style = {styles.adminLink}>
-                        <li style = {styles.adminLi}>Logout </li>
-                    </NavLink>
                 </ul>
             // </div>
         )}}
@@ -53,7 +53,9 @@ const styles = {
         margin: '0',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
-        padding: "0"
+        padding: "0",
+        visibility: "visible"
+
     },
     adminLink: {
         textDecoration: 'none',
@@ -67,6 +69,9 @@ const styles = {
         backgroundColor: 'white',
         position: 'sticky',
         top: '50px'
+    },
 
-    }
+    invisible: {
+        visibility: "hidden"
+    },
 }

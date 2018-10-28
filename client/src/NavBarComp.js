@@ -3,11 +3,37 @@ import { NavLink } from 'react-router-dom'
 import NavBarAdmin from './NavBarAdmin'
 
 export default class NavBarComp extends React.Component{
+    state = {
+        logChoice: 'Login',
+        activeStyle: {
+            fontWeight: 'bolder',
+            fontSize: 'larger'
+         }
+    }
+    doLogin() {
+        return(
+            <li style = {styles.li}>
+                <NavLink to="/admin/login"
+                    activeStyle ={this.state.activeStyle} 
+                    style = {styles.link}>
+                    Login
+                </NavLink>
+            </li>
+        )
+    }
+    doLogout() {
+        return( 
+            <li style = {styles.li}>
+                <NavLink to="/admin/logout"
+                    activeStyle ={this.state.activeStyle} 
+                    style = {styles.link}>
+                    Logout
+                </NavLink>
+            </li>
+        ) 
+    }  
+
     render(){
-        let activeStyle = {
-           fontWeight: 'bolder',
-           fontSize: 'larger'
-        }
         return(
             <div style = {styles.navbar}>
                 <div style = {styles.logo}>
@@ -17,34 +43,36 @@ export default class NavBarComp extends React.Component{
                 <ul style={styles.ul}>
                     <li style = {styles.li}>
                         <NavLink to="/who" 
-                                activeStyle ={activeStyle} style = {styles.link}>
+                                activeStyle ={this.state.activeStyle} style = {styles.link}>
                             Who
                         </NavLink>
                     </li>
                     <li style = {styles.li}>
                         <NavLink to="/what"
-                            activeStyle ={activeStyle} style = {styles.link}>
+                            activeStyle ={this.state.activeStyle} style = {styles.link}>
                             What
                         </NavLink>
                     </li>
                     <li style = {styles.li}>
                         <NavLink to="/when-where"
-                            activeStyle ={activeStyle} style = {styles.link}>
+                            activeStyle ={this.state.activeStyle} style = {styles.link}>
                         When-Where
                         </NavLink>
                     </li>
                     <li style = {styles.li}>
                         <NavLink to="/why"
-                            activeStyle ={activeStyle} style = {styles.link}>
+                            activeStyle ={this.state.activeStyle} style = {styles.link}>
                         Why
                         </NavLink>
                     </li>
                     <li style = {styles.li}>
                         <NavLink to="/cart"
-                            activeStyle ={activeStyle} style = {styles.link}>
+                            activeStyle ={this.state.activeStyle} style = {styles.link}>
                         Cart
                         </NavLink>
                     </li>
+                    {localStorage.getItem('token') ? this.doLogout() : this.doLogin()} 
+                    
                 </ul>
             </div>
         )}}

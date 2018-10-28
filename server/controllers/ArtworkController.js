@@ -64,7 +64,7 @@ class ArtworkController {
                     console.log('IMAGE DELETE: error', error, 'result',result)
                 });
             } else {
-                alert("error deleting artwork")
+                console.log("ERROR: deleting artwork")
             }
             
         }

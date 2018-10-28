@@ -15,4 +15,7 @@ export default class OneArtDelete extends Component {
     }
 }
 
+///STYLES are passed in as argument from AdminArtGrid->AdminArtItem->here
+
+
 

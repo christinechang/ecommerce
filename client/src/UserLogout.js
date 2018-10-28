@@ -9,6 +9,9 @@ export default class UserLogout extends Component {
         localStorage.removeItem('token');
     }
     render() { 
+        setTimeout(()=>{                    ///delay to show logout screen then redirect
+            this.props.history.push('/admin/login')
+        }, 1000);
         return (
             <div>
                 <div style = {styles.pageTitle}>

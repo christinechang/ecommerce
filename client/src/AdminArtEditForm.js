@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
+import NavButton from './NavButton';
+
 
 export default class AdminArtEditForm extends Component {
     state = {
@@ -28,7 +29,6 @@ export default class AdminArtEditForm extends Component {
         }
         this.props._getEditInfo(obj)
         // this.props.history.push('/admin/artworks')
-
     }
    
     render() { 
@@ -70,9 +70,7 @@ export default class AdminArtEditForm extends Component {
                         </div>
                     </div>
                     <div style= {styles.layout_2button}>
-                        <NavLink to={`/admin/artworks`} style={styles.fakebutton}>
-                            <p style = {styles.par}>Cancel</p>
-                        </NavLink>
+                        <NavButton url = "/admin/artworks" bText = "Cancel" />
 
                         <button  style = {styles.addArtButton} onClick = {this.handleClick}>Update Artwork</button>
                     </div>
@@ -81,3 +79,5 @@ export default class AdminArtEditForm extends Component {
         } else return null
     }
 }
+
+///STYLES are passed in as argument from AdminArtGrid->AdminArtItem->here

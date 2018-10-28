@@ -6,16 +6,17 @@ export default class Cart1Item extends Component {
     render() {
         const item = this.props.item;
 
-        const deleteItem = this.props.deleteItem;
         return(
             <div style = {styles.layout_checkout} idx = {this.props.idx}> 
                 <div style = {styles.imgContainer}>
-                    <img  style = {styles.artImg} src = {item.imgurl} width = "300px" />
+                    <img  style = {styles.artImg} src = {item.imgurl} width = "300px" alt = ''/>
                 </div>
-                <p> {this.props.idx + 1})</p>
+                <div style = {styles.itemNumberIdx}>
+                    <p> {this.props.idx + 1})</p>
+                </div>
                 <div>    
                     <p>Print with Image "{item.name}"</p>
-                    {/* <p> {item._id}</p>  */}
+                    {/* <p> {item._id}</p>  // keep this here in case*/}
                     <p>Size: {item.size} </p>
                     <p>Quantity: {item.quantity} (CHANGE)</p>
                     <p>Price: ${item.price} each</p>
@@ -30,8 +31,7 @@ export default class Cart1Item extends Component {
                     <h3>${item.quantity * item.price}</h3>
                 </div>
             </div>
-                        )
-
+        )
     }
 }
 let styles = {
@@ -53,6 +53,9 @@ let styles = {
     },
     imgContainer: {
         width: "300px",
+    },
+    itemNumberIdx: {
+        paddingLeft: "10"
     },
     artImg: {
         width: "100%",

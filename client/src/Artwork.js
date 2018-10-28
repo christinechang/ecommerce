@@ -59,7 +59,7 @@ export default class Artwork extends Component {
     }
     onChangeDetails = (e) => { 
         //get quantity and size
-        let cb = () => {console.log(`size:${this.state.size};quantity:${this.state.quantity}`)}
+        // let cb = () => {console.log(`size:${this.state.size};quantity:${this.state.quantity}`)}
         this.setState({[e.target.name]:e.target.value}); 
     }
     render = () =>{
@@ -103,7 +103,7 @@ export default class Artwork extends Component {
                 {(this.state.showMsg) ?
                     // (<div style = {styles.overlay} >
                     (<div>
-                        <Message msg1 = {"Item Added to Cart"}   
+                        <Message msg1 = {"Item Successfully Added to Cart"}   
                         button1Msg = {"Continue Shopping"} button1Url = {"/what"} button2Msg = {"Go To Cart"} button2Url = "/cart" />
                     </div>)
                     : ''}

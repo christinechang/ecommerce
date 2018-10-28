@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import AdminArtInputDesc from './AdminArtInputDesc';
 import AdminArtInputDims from './AdminArtInputDims';
-import { NavLink } from 'react-router-dom'
-
+import NavButton from './NavButton';
 
 export default class AdminArtInput extends Component {
     //react way to declare method
@@ -64,9 +63,9 @@ render() {
             <AdminArtInputDesc _getInputData = {this._getInputData} styles = {styles}/>
             <AdminArtInputDims _getInputData = {this._getInputData} styles = {styles}/>
             <div style= {styles.layout_2button}>
-                <NavLink to={`/admin/artworks`} style={styles.fakebutton}>
-                    <p style = {styles.par}>Cancel</p>
-                </NavLink>
+
+                <NavButton url = "/admin/artworks" bText = "Cancel"/>
+
                 <button  style = {styles.addArtButton} onClick = {this.addArtwork}>Add Artwork</button>
             </div>
 
@@ -110,28 +109,15 @@ let styles = {
         alignItems: "center",
         marginBottom: "40px"
     },
-    fakebutton: {
-        backgroundColor: "lightgrey",
-        border: "1px solid black",
-        height: '40px',
-        width: "200px",
-        color: "black",
-        fontSize: "16px",
 
-        textDecoration: "none",
-        display: "flex",
-        justifyContent: "center"
-    },
-    par: {
-        alignSelf: "center",
-    },
     addArtButton: {
         backgroundColor: "lightgrey",
         border: "1px solid black",
-        height: '40px',
-        width: "200px",
-        fontSize: "16px",
-
-        // padding: '0 20px'
+        height: '55px',
+        width: "30vw",
+        fontSize: "20px",
+        padding: '0',
+        margin: "0",
+        cursor: "pointer"
     }
 }
