@@ -39,11 +39,12 @@ export default class Checkout extends Component {
         this.setState({subTotal:subTotal}, this.calcTotals)
     }
 
-    getContactInfo = (firstname, lastname, address1, address2, city, stateUS, postal, country, phone, emailaddress, cc_fullname) => {
-        
+    getContactInfo = (firstname, lastname, address1, address2, city, stateUS, postal, country, 
+        phone, emailaddress, cc_fullname) => {
         this.setState({firstname:firstname,lastname,address1,address2,city,stateUS,
             postal, country, phone, emailaddress, cc_fullname});
     }
+
     getExtras = (tax,shipping,totalAmount) => {
         this.setState({tax,shipping,totalAmount},()=>{console.log(`EXTRAS: ${this.state.tax},${this.state.shipping},${this.state.totalAmount}`)})
     }
@@ -55,9 +56,8 @@ export default class Checkout extends Component {
     render= () => {
         // console.log("subTotal:",this.state.subTotal)
         let visibility = (this.state.firstname && this.state.lastname && this.state.address1 && 
-            this.state.city && this.state.us_state && this.state.postal && this.state.emailaddress && 
+            this.state.city && this.state.stateUS && this.state.postal && this.state.emailaddress && 
             this.state.phone && this.state.cc_fullname) ? styles.visible : styles.invisible;
-        
         return (
             <div  style = {styles.boxBorder}>
                 <div  style = {styles.pageTitle}>
@@ -92,12 +92,14 @@ let styles = {
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "flex-end",
-        width: "95%",
-        margin: "10px"
+        marginTop: "10px"
     },
     paymentContainer: {
-        backgroundColor: "lightBlue",
-        padding: "30px"
+        backgroundColor: "white",
+        padding: "30px",
+        border: "1px grey solid",
+        borderRadius: "5px"
+
     },
     note: {
         fontSize: 14,
