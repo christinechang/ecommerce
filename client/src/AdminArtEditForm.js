@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NavButton from './NavButton';
 
-
 export default class AdminArtEditForm extends Component {
     state = {
         name: '',
@@ -10,7 +9,11 @@ export default class AdminArtEditForm extends Component {
         media: '',
         width:'',
         height:'',
-        year: ''
+        year: '',
+        size: '',
+        note: '',
+        sortId: '',
+        price: ''
     }   
 
     onChange = e => {
@@ -25,9 +28,13 @@ export default class AdminArtEditForm extends Component {
             media: this.state.media || this.props.artInfoOld.media,
             width: this.state.width || this.props.artInfoOld.width,
             height: this.state.height || this.props.artInfoOld.height,
-            year: this.state.year || this.props.artInfoOld.year
+            year: this.state.year || this.props.artInfoOld.year,
+            size: this.state.size || this.props.artInfoOld.size,
+            note: this.state.note || this.props.artInfoOld.note,
+            sortId: this.state.sortId || this.props.artInfoOld.sortId,
+            price: this.state.price || this.props.artInfoOld.price
         }
-        this.props._getEditInfo(obj)
+        this.props._getEditInfo(obj)    //sends up to AdminArtUpdate.js
         // this.props.history.push('/admin/artworks')
     }
    
@@ -51,6 +58,9 @@ export default class AdminArtEditForm extends Component {
                         <label>Description</label>
                         <textarea name="description" cols="40" rows="5"style={styles.input} onChange = {this.onChange}
                                     value = {this.state.description || this.props.artInfoOld.description}></textarea>
+                        <label>Note</label>
+                        <textarea name="note" cols="40" rows="2"style={styles.input} onChange = {this.onChange}
+                                    value = {this.state.note || this.props.artInfoOld.note}></textarea>
                     </div>
                     <div  style = {styles.layout_multi} >
                         <div>
@@ -67,6 +77,16 @@ export default class AdminArtEditForm extends Component {
                             <label>Year</label>
                             <input type="text" name="year"style={styles.small_input} onChange = {this.onChange}
                                     value = {this.state.year || this.props.artInfoOld.year}></input>
+                        </div>
+                        <div>        
+                            <label>Price</label>
+                            <input type="text" name="price"style={styles.small_input} onChange = {this.onChange}
+                                    value = {this.state.price || this.props.artInfoOld.price}></input>
+                        </div>
+                        <div>        
+                            <label>Sort ID</label>
+                            <input type="text" name="sortId"style={styles.small_input} onChange = {this.onChange}
+                                    value = {this.state.sortId || this.props.artInfoOld.sortId}></input>
                         </div>
                     </div>
                     <div style= {styles.layout_2button}>

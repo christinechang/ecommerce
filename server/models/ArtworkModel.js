@@ -3,17 +3,19 @@ const Schema = mongoose.Schema;
 
 const artworkSchema = new Schema ({
     name: {type: String, required: true},
-    width: {type: Number},
-    height: {type: Number},
-    year: {type: Number},
+    description: {type: String},
     category: {type: String},   //art category
     media: {type: String},
-    description: {type: String},
-    price: {type:Number},
+    width: {type: Number},
+    height: {type: Number},
+    year: {type: Number},    
     size: {type: String},
     imgurl: {type: String},
     public_id: {type: String},
-    alt: {type: String}
+    alt: {type: String},
+    sortId: {type: Number},
+    note: {type: String},
+    price: {type:Number}
 
 }) 
 

@@ -17,15 +17,17 @@ export default class CheckoutContactInfo extends Component {
     }
 
     onChangeContact = (e) => {
-        let cb1 = () => {
-            this.props.getContactInfo(this.state.firstname,this.state.lastname,this.state.address1,
-                this.state.address2,this.state.city,this.state.stateUS, this.state.postal,
-                this.state.country, this.state.phone, this.state.emailaddress, this.state.cc_fullname)}
-        let cb2 = () => {console.log(this.state)}    
-        this.setState({[e.target.name]:e.target.value}, cb1 );
+        // let cb1 = () => {
+        //     this.props.getContactInfo(this.state.firstname,this.state.lastname,this.state.address1,
+        //         this.state.address2,this.state.city,this.state.stateUS, this.state.postal,
+        //         this.state.country, this.state.phone, this.state.emailaddress, this.state.cc_fullname)}
+        // let cb2 = () => {console.log(this.state)}    
+        this.props._getInputData({[e.target.name]:e.target.value}); //send to parent
+        this.setState({[e.target.name]:e.target.value});
     }
     getStateUS = (stateUS) =>{
         // let cb =  () => {console.log("new state = ", stateUS)}
+        this.props._getInputData({"stateUS":stateUS})
         this.setState({stateUS: stateUS})
     }
     valid_us_postcode = (postcode) => {

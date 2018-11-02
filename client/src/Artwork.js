@@ -78,7 +78,8 @@ export default class Artwork extends Component {
                     <div style = {styles.artInfoBox}>
                         <p style = {styles.artHeading}> {artInfo.name}</p>
                         <p style = {styles.artInfo}>{artInfo.media}</p>
-                        <p style = {styles.artInfo}>{artInfo.width} x {artInfo.height}</p>
+                        <p style = {styles.artInfo}>{artInfo.width} {artInfo.width ? 'x' : null} {artInfo.height}</p>
+                        <p style = {styles.artInfo}> {artInfo.price ? '$' : null}{artInfo.price}</p>
                         <p>{artInfo.description}</p>
                     </div>
 

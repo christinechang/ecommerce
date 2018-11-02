@@ -30,23 +30,26 @@ class ArtworkController {
     }
     //more functions here
     async _insert(req,res) { //(finds many and returns array) //next used to determine if this runs or not
-        let {name, width,height,year,category,media,description,imgurl,public_id, alt} =  req.body;
+        let {name,description,category,media,width,height,year,size,imgurl,public_id, alt, note, sortId,price} =  req.body;
         console.log ('creating new artwork: ',name, width,height,year,category,media,description);
         try {
             let artworkNew = {
                 name: name,    
+                description: description,
+                category: category,       
+                media: media,
                 width: width,    
                 height: height,    
                 year: year,
-                category: category,
-                media: media,
-                description: description,
+                size: size,
                 imgurl:imgurl,
                 public_id:public_id,
-                alt:alt
+                alt:alt,
+                note:note,
+                sortId:sortId,
+                price:price
             }
             const artInfo = await Artwork.create(artworkNew)//model fetch data from mongo
-      
             res.send(artInfo); //sends to browser
         }
         catch(e) {
@@ -66,18 +69,17 @@ class ArtworkController {
             } else {
                 console.log("ERROR: deleting artwork")
             }
-            
         }
         catch(e) {
             res.send({e})
         }
     }
     async _update(req,res) { //(finds many and returns array) //next used to determine if this runs or not
-        let {_id, name, width,height,year,category,media,description,imgurl,public_id, alt} =  req.body;
+        let {_id, name,description,category,media, width,height,year,size,imgurl,public_id,alt,note,sortId,price} =  req.body;
 
         let artInfo, artInfoUpdated;
 
-        console.log ('creating updated artwork: ', _id, name,width,height,category,imgurl);
+        console.log ('creating updated artwork: ', _id, name,width,height,year,category,media,description,imgurl,alt,note,sortId);
         
         try {
             artInfo = await Artwork.findOne({_id:_id})//get info on image to update
@@ -90,14 +92,19 @@ class ArtworkController {
         try {
             artInfoUpdated = await Artwork.updateOne({_id},{$set:{
                 name: (name || artInfo.name),    
+                description: (description || artInfo.description), 
+                category: (category || artInfo.category), 
+                media: (media || artInfo.media), 
                 width: (width || artInfo.width),    
                 height: (height || artInfo.height),
                 year:  (year || artInfo.year),
-                description: (description || artInfo.description), 
-                category: (category || artInfo.category), 
+                size: (size || artInfo.size),
                 imgurl: (imgurl || artInfo.imgurl), 
                 public_id: (public_id || artInfo.public_id),
-                alt: (alt || artInfo.alt)
+                alt: (alt || artInfo.alt),
+                note: (note || artInfo.note),                
+                sortId: (sortId || artInfo.sortId),
+                price: (price || artInfo.price)
             }})
             res.send(artInfoUpdated); //sends to browser
         }
@@ -105,7 +112,6 @@ class ArtworkController {
             res.send({e})
         }
     }
-
 }
 
 const artworkController = new ArtworkController();     

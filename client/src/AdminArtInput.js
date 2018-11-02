@@ -14,13 +14,17 @@ export default class AdminArtInput extends Component {
         width:'',
         height:'',
         year: '',
+        size: '',
         imgurl: '',
         public_id: '',
-        alt: ''
+        alt: '',
+        sortId: '',
+        note: '',
+        price: ''
     }
  
     _getInputData = (data) => {
-        console.log('got the data',data);
+        // console.log('got the data',data);
         
         this.setState(data);
     }
@@ -29,6 +33,7 @@ export default class AdminArtInput extends Component {
         //writes to database
         const url = "http://localhost:3010/artworks/add";
         let token = localStorage.getItem('authToken')
+        console.log("token:",token)
         try{
             let response = await fetch(url,{
                     method: 'POST',
@@ -39,11 +44,10 @@ export default class AdminArtInput extends Component {
                     Authorization: token,
                     body: JSON.stringify(this.state)        //need to stringify state to pass to body
                 })
-            // 
 
             if (response.ok) {
                 let resJson = await response.json()
-                
+                console.log("art input ok, resJson : ",resJson)
                 //get id from resJson
                 this.props.history.push('/admin/artworks')
             } else {

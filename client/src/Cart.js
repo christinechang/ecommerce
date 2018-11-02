@@ -4,15 +4,21 @@ import NavButton from './NavButton';
 
 export default class Cart extends Component {
     state = {
-        orderItems:[]  
+        orderItems:[],
+        subTotal: 0
     }
-
-    updateCart = () => {
-
+    getSubTotal = () => {
+        let subTotal = 0
+        this.state.orderItems.map( (elem) => {
+            subTotal += (elem.price * elem.quantity)
+        });
+        this.setState({subTotal: subTotal})
+        console.log("subtotal: ",this.state.subTotal)
     }
 
     getOrderList = () => {
         let cb = () => {
+            this.getSubTotal();
             console.log(`orderItems: ${this.state.orderItems}`)
         }
         //get order info from localStorate
@@ -27,9 +33,15 @@ export default class Cart extends Component {
         let orderList = JSON.stringify(this.state.orderItems);
         localStorage.setItem('orderList',orderList);
     }
-    changeQuantity = () => {
+    changeQuant = (position, quant) => {
+        let cb = () => {
+            this.updateOrderList(); 
+            this.getSubTotal()
+        } 
         //change quantity
-        this.updateOrderList();
+        let orderItems = this.state.orderItems;
+        orderItems[position].quantity = quant;
+        this.setState({orderItems: orderItems}, cb );       //reset the state
     }
     deleteItem = (position) => {
         let cb = () => {this.updateOrderList()} 
@@ -42,14 +54,8 @@ export default class Cart extends Component {
     }
 
     render= () => {
-        let subTotal = 0;
-        // let totalAmount = 0;
-        // let salesTaxRate = .0825;
-        this.state.orderItems.map( (elem) => {
-            subTotal += elem.price
-        });
 
-        let visibility = (subTotal > 0) ? styles.visible : styles.invisible;
+        let visibility = (this.state.subTotal > 0) ? styles.visible : styles.invisible;
        
         return (
             <div  style = {styles.boxBorder}>
@@ -60,13 +66,14 @@ export default class Cart extends Component {
                 {this.state.orderItems.map( (elem,i) => {
                     // debugger
                     return (
-                        <Cart1Item key = {i} item = {elem} idx = {i} deleteItem = {this.deleteItem}/>
+                        <Cart1Item key = {i} item = {elem} idx = {i} deleteItem = {this.deleteItem} 
+                                    changeQuant = {this.changeQuant}/>
                     )
                 })}
                 <div style = {styles.total_line}>
                     <div></div>
                     <h4 style = {styles.total}>Subtotal: </h4>
-                    <h4 style = {styles.total}>${subTotal} </h4>
+                    <h4 style = {styles.total}>${this.state.subTotal} </h4>
                 </div>                   
                    
                 <div style = {Object.assign({},styles.checkoutContainer,visibility)}>

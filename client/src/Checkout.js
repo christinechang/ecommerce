@@ -38,7 +38,9 @@ export default class Checkout extends Component {
         })
         this.setState({subTotal:subTotal}, this.calcTotals)
     }
-
+    _getInputData = (data) => {
+        this.setState(data);
+    }
     getContactInfo = (firstname, lastname, address1, address2, city, stateUS, postal, country, 
         phone, emailaddress, cc_fullname) => {
         this.setState({firstname:firstname,lastname,address1,address2,city,stateUS,
@@ -64,8 +66,8 @@ export default class Checkout extends Component {
                     <h2>Check Out:</h2>
                 </div> 
 
-                <CheckoutContactInfo getContactInfo = {this.getContactInfo}/>
-                <CheckoutTotals subTotal = {this.state.subTotal} stateUS = {this.state.stateUS} getExtras = {this.getExtras} />
+                <CheckoutContactInfo _getInputData = {this._getInputData}/>
+                <CheckoutTotals subTotal = {this.state.subTotal} stateUS = {this.state.stateUS} _getInputData = {this._getInputData} />
                
                 <div style = {Object.assign({},styles.rightInDiv,visibility)}>
                     <div style = {styles.paymentContainer}>

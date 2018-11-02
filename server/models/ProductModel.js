@@ -10,7 +10,8 @@ const productSchema = new Schema ({
     price: {type: Number, required: true},
     category: {type: String},       //product category
     artwork_id: {type: String,required: true},
-    // description: {type: String}
+    size: {type: String},
+    description: {type: String}
 })
 
 module.exports = mongoose.model('product', productSchema) 

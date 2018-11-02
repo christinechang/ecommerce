@@ -98,6 +98,8 @@ render() {
                     <div style = {styles.item}>media</div>
                     <div style = {styles.item}>W</div>
                     <div style = {styles.item}>H</div>
+                    <div style = {styles.item}>$$</div>
+                    <div style = {styles.item}>^v</div>
                     <div style = {styles.item}> </div>
                 </div>      
                 {artWorks.map((elem,i)=>(
@@ -125,7 +127,7 @@ let styles = {
     },
     layoutArtList: {
         display:"grid",
-        gridTemplateColumns: "25px 25px 4fr 2fr 2fr 50px 50px 25px",
+        gridTemplateColumns: "25px 25px 2fr 1fr 1fr 50px 50px 60px 50px 25px",
         gridGap: "1px",
         backgroundColor: "grey",
         border: "1px solid grey",

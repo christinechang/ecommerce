@@ -22,10 +22,17 @@ export default class CheckoutTotals extends Component {
     }
     calcTotals = () => {
         let tax = this.getTaxShipping("tax");
+        this.props._getInputData({"tax":tax}); //send to parent
+
         let shipping = this.getTaxShipping("shipping");
+        this.props._getInputData({"shipping":shipping}); //send to parent
+
         let totalAmount = this.props.subTotal + shipping + tax;
+        this.props._getInputData({"totalAmount":totalAmount}); //send to parent
+
         //note - this.state.subTotals is not reliable.  fall back onto this.props.subTotal
         this.setState({shipping:shipping,tax:tax,totalAmount:totalAmount})
+
     }   
     getOrderNumber = () => {
         this.setState.orderNumber = 'X1001'     //generate order number here

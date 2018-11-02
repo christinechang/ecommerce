@@ -2,10 +2,14 @@ import React, {Component} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class Cart1Item extends Component {
-    
-    render() {
-        const item = this.props.item;
+   
+    onChange = (e) => {
+        this.props.changeQuant(this.props.idx,e.target.value);
+       //send to parent
+    }
 
+    render = () =>{
+        const item = this.props.item;
         return(
             <div style = {styles.layout_checkout} idx = {this.props.idx}> 
                 <div style = {styles.imgContainer}>
@@ -18,7 +22,11 @@ export default class Cart1Item extends Component {
                     <p>Print with Image "{item.name}"</p>
                     {/* <p> {item._id}</p>  // keep this here in case*/}
                     <p>Size: {item.size} </p>
-                    <p>Quantity: {item.quantity} (CHANGE)</p>
+                    <p>Quantity:
+                        <input type="number" name="quantity" style={styles.small_input} min="1" step="1" 
+                            defaultValue = {item.quantity}
+                            onChange = {this.onChange}></input>
+                    </p>
                     <p>Price: ${item.price} each</p>
                 </div>
                 <div style = {styles.deleteContainer}>
@@ -51,15 +59,15 @@ let styles = {
         border: "1px grey solid",
         margin: "10px"
     },
-    imgContainer: {
-        width: "300px",
-    },
+    // imgContainer: {
+    //     width: "300px",
+    // },
     itemNumberIdx: {
         paddingLeft: "10"
     },
     artImg: {
-        width: "100%",
-        maxWidth: "300px",
+        // width: "100%",
+        // maxWidth: "300px",
         padding: 10
     },
     deleteContainer: {
@@ -71,5 +79,10 @@ let styles = {
     delete: {
         padding: 10,
         backgroundColor: "lightgrey"
+    },
+    small_input: {
+        marginLeft: "5px",
+        width: "30px",
     }
+
 }

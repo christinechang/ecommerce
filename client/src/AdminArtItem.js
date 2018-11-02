@@ -22,6 +22,8 @@ export default class AdminArtItem extends Component {
                 <div style = {styles.item}>{artwork.media }</div>
                 <div style = {styles.item}>{artwork.width} </div>
                 <div style = {styles.item}>{artwork.height }</div>
+                <div style = {styles.item}>{artwork.price }</div>
+                <div style = {styles.item}>{artwork.sortId }</div>
                 <AdminArtDelete 
                     _id = {artwork._id} 
                     public_id = {artwork.public_id} 

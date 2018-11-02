@@ -17,7 +17,7 @@ export default class ProductInput extends Component {
     }
  
     _getData = (data) => {
-        console.log('got the data',data);
+        // console.log('got the data',data);
         this.setState(data);
     }
     

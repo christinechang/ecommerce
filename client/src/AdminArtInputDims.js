@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 
 export default class AdminArtInputDims extends Component { 
-    state = {
-        width:'',
-        height:'',
-        year: ''
-    }   
     
     onChange = e => {
-    //  this.setState({[e.target.name]:e.target.value});
         this.props._getInputData({[e.target.name]:e.target.value}) //send to parent
     }
 
@@ -26,7 +20,15 @@ export default class AdminArtInputDims extends Component {
                 </div>
                 <div>        
                     <label>Year</label>
-                    <input type="number" name="year"style={styles.small_input}></input>
+                    <input type="number" name="year" style={styles.small_input}></input>
+                </div>
+                <div>        
+                    <label>Price</label>
+                    <input type="text" name="price" style={styles.small_input}></input>
+                </div>
+                <div>        
+                    <label>Sort ID</label>
+                    <input type="text" name="sortId" style={styles.small_input}></input>
                 </div>
             </div>
         );

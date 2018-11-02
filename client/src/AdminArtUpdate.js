@@ -10,9 +10,13 @@ export default class AdminArtUpdate extends Component {
         width:'',
         height:'',
         year: '',
+        size: '',
         imgurl: '',
         public_id: '',
-        alt: ''
+        alt: '',
+        note: '',
+        sortId: '',
+        price: ''
     }
     _getCurrentData = async ()=> {
         const url = `http://localhost:3010/artworks/${this.props.match.params._id}`;
@@ -33,8 +37,8 @@ export default class AdminArtUpdate extends Component {
 
                 this.setState({artInfoOld: resJson});
                 this.setState({'name': this.state.artInfoOld.name})
-                console.log("response.ok")
-                console.log(this.state.artInfoOld)
+                // console.log("response.ok")
+                // console.log(this.state.artInfoOld)
 
                 return resJson;
             } else {
@@ -47,18 +51,45 @@ export default class AdminArtUpdate extends Component {
     }
     componentDidMount = () =>{
         this._getCurrentData();
-        
     }
     _getEditInfo = (data) => {
         var cb = () =>{
+            this.updateDatabase();
             this.props.history.push('/admin/artworks')
         }
-        this.setState({...data},cb)
-
+        this.setState({...data},cb);
         
     }
-    updateDatabase = () => {
+    updateDatabase = async () => {
         //fetch and stuff
+        let oneArt = ((({name,description,category,media,width,height,year,size,imgurl,public_id,alt,note,sortId,price})=>({name,description,category,media,width,height,year,size,imgurl,public_id,alt,note,sortId,price}))(this.state));
+        oneArt._id = this.props.match.params._id;
+        // console.log("just the state we want: ",oneArt)
+        const url = "http://localhost:3010/artworks/update";
+        let token = localStorage.getItem('authToken');
+        try{
+            let response = await fetch(url,{
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    Authorization: token,
+                    body: JSON.stringify(oneArt)        //need to stringify state to pass to body
+                })
+            if (response.ok) {
+                let resJson = await response.json()
+                // console.log("art edit ok, resJson : ",resJson)
+                //get id from resJson
+                this.props.history.push('/admin/artworks')
+            } else {
+                alert("Art input not updated")
+                //error handling - alert user?
+            }
+        }
+        catch(err) {    //big error - server problem
+            alert(err);
+        } 
     }
     render() {
         return(

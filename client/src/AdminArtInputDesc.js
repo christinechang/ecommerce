@@ -19,6 +19,8 @@ export default class AdminArtInputDesc extends Component {
                 <input type="text" name="media" style={styles.input}></input>
                 <label>Description</label>
                 <textarea name="description" cols="40" rows="5" style={styles.input}></textarea>
+                <label>Note</label>
+                <textarea name="note" cols="40" rows="2"style={styles.input}></textarea>
             </div>
         );
     }
