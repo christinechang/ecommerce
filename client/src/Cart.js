@@ -13,9 +13,8 @@ export default class Cart extends Component {
             subTotal += (elem.price * elem.quantity)
         });
         this.setState({subTotal: subTotal})
-        console.log("subtotal: ",this.state.subTotal)
+        // console.log("subtotal: ",this.state.subTotal)
     }
-
     getOrderList = () => {
         let cb = () => {
             this.getSubTotal();
@@ -33,21 +32,20 @@ export default class Cart extends Component {
         let orderList = JSON.stringify(this.state.orderItems);
         localStorage.setItem('orderList',orderList);
     }
+    updateTotal = () => {
+        this.updateOrderList(); 
+        this.getSubTotal()        
+    }
     changeQuant = (position, quant) => {
-        let cb = () => {
-            this.updateOrderList(); 
-            this.getSubTotal()
-        } 
         //change quantity
         let orderItems = this.state.orderItems;
         orderItems[position].quantity = quant;
-        this.setState({orderItems: orderItems}, cb );       //reset the state
+        this.setState({orderItems: orderItems}, this.updateTotal );       //reset the state
     }
     deleteItem = (position) => {
-        let cb = () => {this.updateOrderList()} 
         let orderItems = this.state.orderItems.slice();     //copy from state
         orderItems.splice(position,1);                    // remove this item
-        this.setState({orderItems: orderItems}, cb );       //reset the state
+        this.setState({orderItems: orderItems}, this.updateTotal );       //reset the state
     }
     componentDidMount() {
         this.getOrderList();

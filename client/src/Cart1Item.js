@@ -47,7 +47,6 @@ let styles = {
         borderLeft: "1px grey solid",
         padding: 20
     },
-    
     layout_checkout: {
         display:"grid",
         gridTemplateColumns: "5fr 1fr 8fr 1fr 2fr",
@@ -59,15 +58,11 @@ let styles = {
         border: "1px grey solid",
         margin: "10px"
     },
-    // imgContainer: {
-    //     width: "300px",
-    // },
+
     itemNumberIdx: {
         paddingLeft: "10"
     },
     artImg: {
-        // width: "100%",
-        // maxWidth: "300px",
         padding: 10
     },
     deleteContainer: {
