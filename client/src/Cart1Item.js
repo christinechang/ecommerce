@@ -56,6 +56,7 @@ let styles = {
         alignSelf: 'center',
         justifySelf: 'center',
         border: "1px grey solid",
+        borderRadius: 5,
         margin: "10px"
     },
 
@@ -73,7 +74,8 @@ let styles = {
     },
     delete: {
         padding: 10,
-        backgroundColor: "lightgrey"
+        backgroundColor: "lightgrey",
+        borderRadius: 5
     },
     small_input: {
         marginLeft: "5px",

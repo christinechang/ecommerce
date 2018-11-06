@@ -34,7 +34,6 @@ export default class What extends Component {
       if (elem.sortId && !(isNaN(elem.sortId))) {   //if sortId is a number
         //copy the elem to index of sortId
           newIdx = elem.sortId - 1    //(sortId starts at #1)
-          debugger
         while (sortedArr[newIdx]) {  //while there is something here, go on -make sure nothing already in this slot
             newIdx ++;
         }
@@ -50,7 +49,7 @@ export default class What extends Component {
         sortedArr[newIdx]= JSON.parse(JSON.stringify(elem))    //write the elem
       }
     })   
-    sortedArr.map((elem, i)=>{console.log(elem.sortId,elem.name)})
+    // sortedArr.map((elem, i)=>{console.log(elem.sortId,elem.name)})
     return (sortedArr) 
   }
 
@@ -62,7 +61,7 @@ export default class What extends Component {
   render() { 
       return (
         <div>
-          <div style = {styles.layout3col}>
+          <div id = "galleryLayout">
             <GalleryCol artarr = {this.state.artWorks} mod = {0}/>
             <GalleryCol artarr = {this.state.artWorks} mod = {1}/>
             <GalleryCol artarr = {this.state.artWorks} mod = {2}/>
@@ -78,7 +77,6 @@ let styles = {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridGap: "2%",
     margin: "2%"
-    // marginTop: "20px"
   },
   navBar: {
     width: "100%",

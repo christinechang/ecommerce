@@ -65,7 +65,8 @@ export default class Artwork extends Component {
     render = () =>{
         let artInfo = this.state.artInfo;
         return (
-            <div style = {styles.layout4_1col}>
+            // <div style = {styles.layout4_1col}>
+            <div id = "layoutArtwork">
                 <div style = {styles.floating_product}>
                     <NavLink to="/what">
                         <div style = {styles.closeMe} ><FontAwesomeIcon icon="times-circle" /></div>
@@ -74,7 +75,7 @@ export default class Artwork extends Component {
                         <img style = {styles.artImg} src = {artInfo.imgurl} alt={artInfo.name}/>
                     </div>
                 </div>
-                <div>
+                <div id = "artInfoLayout">
                     <div style = {styles.artInfoBox}>
                         <p style = {styles.artHeading}> {artInfo.name}</p>
                         <p style = {styles.artInfo}>{artInfo.media}</p>
@@ -82,20 +83,21 @@ export default class Artwork extends Component {
                         <p style = {styles.artInfo}> {artInfo.price ? '$' : null}{artInfo.price}</p>
                         <p>{artInfo.description}</p>
                     </div>
-
-                    <div style = {styles.orderInfoBox} onChange = {this.onChangeDetails}>
-                        <div style = {styles.layout2col}>
-                            <label>Quantity</label>
-                            <input type="number" name="quantity" style={styles.small_input} min="1" step="1"></input>
-                        </div>
-                        <div style = {styles.layout2col}>
-                            <label>Size</label>
-                            <input type="number" name="size" style={styles.small_input} min="1" step="1"></input>
+                    <div style = {styles.artInfoBox2}>
+                        <div id = "orderInfoBox" onChange = {this.onChangeDetails}>
+                            <div style = {styles.layout2col}>
+                                <label>Quantity</label>
+                                <input type="number" name="quantity" style={styles.small_input} min="1" step="1"></input>
+                            </div>
+                            <div style = {styles.layout2col}>
+                                <label>Size</label>
+                                <input type="number" name="size" style={styles.small_input} min="1" step="1"></input>
+                            </div>                    
                         </div>                    
-                    </div>                    
-                    <div style = {styles.centerInDiv}>
-                        <button style = {styles.addCartButton} onClick = {this.addCart}>Add to Cart</button>
-                        {/* <p>{this.state.artInfo._id}</p> */}
+                        <div style = {styles.centerInDiv}>
+                            <button style = {styles.addCartButton} onClick = {this.addCart}>Add to Cart</button>
+                            {/* <p>{this.state.artInfo._id}</p> */}
+                        </div>
                     </div>
                     <div style = {styles.relatedItems}>
                         <p style = {styles.artInfo}>related items</p>
@@ -119,13 +121,11 @@ let styles = {
         gridTemplateColumns: "4fr 1fr",
         gridGap: "2%",
         backgroundColor: "white",
-        // height: "92vh",
         width: "95%",
         alignSelf: 'center',
         justifySelf: 'center',
         marginLeft:"3%",
-        zIndex: "5",
-        visibility: "visible"   //hidden
+
     },
     layout2col: {
         display:"grid",
@@ -134,6 +134,7 @@ let styles = {
         backgroundColor: "white",
         alignSelf: 'center',
         justifySelf: 'center',
+        marginTop: 20
     },
     floating_product: {
         // alignSelf: 'center',
@@ -141,6 +142,8 @@ let styles = {
         backgroundColor: "white",
         padding: "2%"  ,
         border: "lightgrey solid 1px",
+        borderRadius: 5,
+        margin: 5
     },
 
     imgContainer: {
@@ -166,8 +169,13 @@ let styles = {
     artInfoBox: {
         width: "100%",
         border: "lightgrey solid 1px",
+        borderRadius: 5,
         margin: "2%"   
     },
+    artInfoBox2: {
+        width: "100%",
+        margin: "2%"   
+    },   
     orderInfoBox: {
         display:"grid",
         gridTemplateColumns: "1fr 1fr",
@@ -176,24 +184,26 @@ let styles = {
         alignSelf: 'center',
         justifySelf: 'center',
         width: "100%",
-        margin: "2% 0 2% 2% "   
+        margin: "4% 0 2% 2%"   
     },
     relatedItems: {
         width: "100%",
         minHeight: "200px",
-        border: "lightgrey 1px solid"    ,
+        border: "lightgrey 1px solid",
+        borderRadius: 5,
         margin: "2%"   
     },
     addCartButton: {
         border: "1px solid black",
+        borderRadius: 5,
         margin:"15px auto",
         height: '30px',
-        padding: '0 20px',
-        width: "200px"
+        // padding: '0 20px',
+        // width: "200px"
+        width: '95%',
     },
     centerInDiv: {
         width: "100%",
-        marginLeft: "3%",
         textAlign: "center"
     },
     overlay: {
@@ -209,6 +219,7 @@ let styles = {
     },
     small_input: {
         width: "30px",
+        borderRadius: 5,
     }
 }
 

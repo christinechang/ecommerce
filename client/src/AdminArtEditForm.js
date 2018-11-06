@@ -13,7 +13,8 @@ export default class AdminArtEditForm extends Component {
         size: '',
         note: '',
         sortId: '',
-        price: ''
+        price: '',
+        alt: ''
     }   
 
     onChange = e => {
@@ -32,7 +33,8 @@ export default class AdminArtEditForm extends Component {
             size: this.state.size || this.props.artInfoOld.size,
             note: this.state.note || this.props.artInfoOld.note,
             sortId: this.state.sortId || this.props.artInfoOld.sortId,
-            price: this.state.price || this.props.artInfoOld.price
+            price: this.state.price || this.props.artInfoOld.price,
+            price: this.state.alt || this.props.artInfoOld.alt
         }
         this.props._getEditInfo(obj)    //sends up to AdminArtUpdate.js
         // this.props.history.push('/admin/artworks')
@@ -61,6 +63,10 @@ export default class AdminArtEditForm extends Component {
                         <label>Note</label>
                         <textarea name="note" cols="40" rows="2"style={styles.input} onChange = {this.onChange}
                                     value = {this.state.note || this.props.artInfoOld.note}></textarea>
+                        <label>Image Alt</label>
+                        <textarea name="alt" cols="40" rows="1"style={styles.input} onChange = {this.onChange}
+                                    value = {this.state.alt || this.props.artInfoOld.alt}></textarea>
+
                     </div>
                     <div  style = {styles.layout_multi} >
                         <div>

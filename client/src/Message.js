@@ -21,8 +21,16 @@ export default class Message extends Component {
                     <div style = {styles.overlayMsgBox}> 
                         <h2  style = {styles.message}>{msg1}</h2>
                         <div style = {styles.overlayButtonBox}>
-                            <NavLink to={button1Url} style={styles.navlink}><div style = {styles.fakebutton}><p style = {styles.par}>{button1Msg}</p></div></NavLink>
-                            <NavLink to={button2Url} style={styles.navlink}><div style = {styles.fakebutton}><p style = {styles.par}>{button2Msg}</p></div></NavLink>
+                            <NavLink to={button1Url} style={styles.navlink}>
+                                <div style = {styles.fakebutton}>
+                                    <p>{button1Msg}</p>
+                                </div>
+                            </NavLink>
+                            <NavLink to={button2Url} style={styles.navlink}>
+                                <div style = {styles.fakebutton}>
+                                    <p>{button2Msg}</p>
+                                </div>
+                            </NavLink>
                         </div>
                     </div>
                 </div>
@@ -43,7 +51,8 @@ let styles = {
         backgroundColor: "#f4f4f4",
         opacity: "1", 
         margin:"0 5%",
-        border: "lightgrey 1px solid"
+        border: "lightgrey 1px solid",
+        borderRadius: 5
     },
     overlayMsgBox: {
         // zIndex: "11",
@@ -51,9 +60,11 @@ let styles = {
         height: "200px",
         margin: "10% 10%",
         marginBottom: "20px",
-        backgroundColor: "#3e90bc",
-        color: "#f9f0c7",
+        color: "#3e90bc",
+        // color: "#f9f0c7",
         textAlign: "center",
+        borderRadius:5
+
     },
     message: {
         alignSelf: 'center',
@@ -70,12 +81,16 @@ let styles = {
     },
     fakebutton: {
         border: "1px solid black",
-        margin:"15px auto",
+        margin:"0 auto",
         height: '50px',
         padding: '0 20px',
         width: "70%",
         backgroundColor: "lightgrey",
         fontSize: "20px",
+        borderRadius:5,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     },
     navlink: {
         textDecoration: "none",
@@ -84,10 +99,7 @@ let styles = {
         display: "flex",
         alignItems: "center"
     },
-    par: {
-        textAlign: "center",
-        margin: "0"
-    }
+
 }
 
 

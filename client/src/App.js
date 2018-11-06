@@ -3,7 +3,7 @@ import Who from './Who'
 import WhenWhere from './WhenWhere'
 import Why from './Why'
 import NavBarComp from './NavBarComp'
-// import NavBarAdmin from './NavBarAdmin'
+import NavBarAdmin from './NavBarAdmin' /////
 import AdminArtGrid from './AdminArtGrid'
 import AdminArtInput from './AdminArtInput'
 import AdminArtUpdate from './AdminArtUpdate'
@@ -46,7 +46,7 @@ export default class App extends Component {
       <Router>
         <div>
         <NavBarComp/>
-        {/* <NavBarAdmin/> */}
+        <NavBarAdmin/>
           <Route exact path = "/" component = {What}/>
           <Route path = '/who' component = {Who}/>
           {/* <Route exact path = '/what/:id' component = {ProductGrid}/> */}

@@ -1,5 +1,113 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Raleway', sans-serif;
+  border-radius: 5px;
 }
+#galleryLayout {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2%;
+  margin: 2%;
+}
+#layout2ColResp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2%;
+  background-color: white;
+  align-self: center;
+  justify-self: center;
+}
+#layoutArtwork {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-gap: 2%;
+  background-color: white;
+  align-self: center;
+  justify-self: center;
+  width: 95%;
+  margin-left:3%;
+}
+#artInfoLayout {
+  display: grid;
+  grid-template-columns:1fr;
+  grid-gap: 2%;
+}
+#orderInfoBox {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2%;
+  align-self: center;
+  justify-self: center; */
+
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+}
+#navbarAdmin {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background-color: white;
+  position:sticky;
+  top: 50px;
+}
+#navbar {
+  font-size: 18px;
+}
+#navbarAdmin {
+  font-size: 12px;
+}
+#logo h1{
+  font-size: 2em;
+}
+@media only screen and (max-width: 900px) {
+  #layoutArtwork {
+    grid-template-columns: 1fr;
+  }
+  #artInfoLayout {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  #orderInfoBox {
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (max-width: 700px) {
+  #navbar {
+    font-size: 16px;
+  }
+  #navbarAdmin {
+    font-size: 14px;
+    grid-template-columns: 1fr 4fr;
+  }
+  #logo h1{
+    font-size: 1.7em;
+  }
+  
+  #layout2ColResp {
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #galleryLayout {
+    grid-template-columns: 1fr;
+  }
+  #navbar {
+    font-size: 14px;
+  }
+  #navbarAdmin {
+    font-size: 10px;
+  }
+  #logo h1{
+    font-size: 1.5em;
+  }
+}
+@media only screen and (max-width: 500px) {
+  #navbar {
+    font-size: 12px;
+  }
+
+  #logo h1{
+    font-size: 1.3em;
+  }
+} 

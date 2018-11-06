@@ -101,6 +101,7 @@ let styles = {
         alignSelf: 'center',
         justifySelf: 'center',
         border: "1px grey solid",
+        borderRadius: 5,
         margin: "0 10px"
     },
     total:{
@@ -112,9 +113,8 @@ let styles = {
         justifyContent: "flex-end",
         alignItems: "flex-end",
         width: "95%",
-        margin: "10px"
+        marginTop: "10px"
     },
-    
     visible: {
         display: "flex"
     },

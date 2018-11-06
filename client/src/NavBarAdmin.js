@@ -1,18 +1,23 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+
 export default class NavBarAdmin extends React.Component{
     render(){
         let activeStyle = {
            fontWeight: 'bolder',
            fontSize: 'larger'
         }
-        let visibility = Object.assign({},styles.adminUl,(localStorage.getItem('token') ? {} : styles.invisible))        //if logged in, show admin navbar
-        //check local storage whether user is logged in or not
+        console.log(`visibility: ${JSON.stringify(visibility)}; windowsize: ${this.innerWidth}`)
+
+        let visibility = Object.assign({},styles.adminUl,
+            (localStorage.getItem('token') ? {} : styles.invisible))        //if logged in, show admin navbar
+        // debugger
+            //check local storage whether user is logged in or not
         //change label between 'login' and 'logout'
         return(
-            // <div style={styles.navbarAdmin}>
-            //     <div></div>
-                <ul style={visibility}>
+            <div id = "navbarAdmin">
+                <div></div>
+                <ul style={visibility} id="navbarAdmin">
  
                     <NavLink to="/admin/artworks" activeStyle ={activeStyle} style = {styles.adminLink}>
                         <li style = {styles.adminLi}>admin ART</li>
@@ -21,7 +26,6 @@ export default class NavBarAdmin extends React.Component{
                     <NavLink to="/admin/products" activeStyle ={activeStyle} style = {styles.adminLink}>
                         <li style = {styles.adminLi}>admin PRODUCTS </li>
                     </NavLink>
-                    
                     <li style = {styles.adminLi}>(admin USERS)</li>
                     {/* <NavLink to="/admin/users"
                             activeStyle ={activeStyle} style = {styles.adminLink}>
@@ -36,7 +40,7 @@ export default class NavBarAdmin extends React.Component{
                         </NavLink> */}
 
                 </ul>
-            // </div>
+             </div>
         )}}
 
 const styles = {
@@ -46,13 +50,13 @@ const styles = {
         margin:"0 5%",
         height: "30px",
         // color: '#f9f0c7',
-        fontSize: "12px",
+        // fontSize: "12px",    //see index.css for responsive font-sizes
         },
     adminUl: {
         background:'#3e90bc', 
         margin: '0',
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+        gridTemplateColumns: '1fr 1fr 1fr 1fr',
         padding: "0",
         visibility: "visible"
 
@@ -62,14 +66,7 @@ const styles = {
         color: '#f9f0c7',
         margin: '0 auto'
     },
-    navbarAdmin: {
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        alignItems: "center",
-        backgroundColor: 'white',
-        position: 'sticky',
-        top: '50px'
-    },
+
 
     invisible: {
         visibility: "hidden"

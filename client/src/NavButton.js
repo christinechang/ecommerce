@@ -25,6 +25,7 @@ let styles = {
     },
     navButton: {
         border: "1px solid black",
+        borderRadius: 5,
         margin: "15px",
         padding: '15px',
         backgroundColor: "lightgrey",

@@ -36,11 +36,13 @@ export default class NavBarComp extends React.Component{
     render(){
         return(
             <div style = {styles.navbar}>
-                <div style = {styles.logo}>
-                    <h1 style = {styles.h1}>c zing c</h1>
+                <div style = {styles.logo} id = "logo">
+                    <h1 style = {styles.logo}>c zing c</h1>
                 </div>
-                <NavBarAdmin/>
-                <ul style={styles.ul}>
+                
+                {/* <NavBarAdmin/> */}
+                
+                <ul style={styles.ul} id = "navbar">
                     <li style = {styles.li}>
                         <NavLink to="/who" 
                                 activeStyle ={this.state.activeStyle} style = {styles.link}>
@@ -87,6 +89,7 @@ const styles = {
         alignItems:'center',
         justifyContent:'space-around',
         margin: '0',
+        padding: '0'
     },
     link: {
         textDecoration: 'none',
@@ -95,15 +98,17 @@ const styles = {
     navbar: {
         display: 'grid',
         backgroundColor: '#1a587a',
-        gridTemplateColumns: '1fr 2fr 2fr',
+        gridTemplateColumns: '1fr 2fr 3fr',
+        gridTemplateColumns: '1fr 5fr',
         alignItems: 'center',
         paddingLeft: '15px',
         position: 'sticky',
         top: '0'
     },
-    h1: {
+    logo: {
         margin:'0',
-        color: '#f9f0c7'
+        color: '#f9f0c7',
+        fontFamily: "'Pattaya', sans-serif"
     }
 }
 
